@@ -1,0 +1,29 @@
+AppBundle\Entity\Bill:
+  type: entity
+  table: null
+  repositoryClass: AppBundle\Repository\BillRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  oneToOne:
+    user:
+      targetEntity: AppBundle\Entity\User
+      joinColumn:
+        name: user_id
+        referencedColumnName: id
+  manyToMany:
+    articles:
+      targetEntity: AppBundle\Entity\Article
+      inversedBy: bills
+      joinTable:
+        name: bill_article
+        joinColumns:
+          bill_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          article_id:
+            referencedColumnName: id
+  lifecycleCallbacks: {  }
